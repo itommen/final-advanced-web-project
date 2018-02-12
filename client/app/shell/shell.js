@@ -1,6 +1,5 @@
 import angular from 'angular';
 import './shell.controller';
-import './shell.less';
 
 const MODULE_NAME = 'advanced.controllers';
 

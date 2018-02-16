@@ -1,9 +1,7 @@
 import angular from 'angular';
 import './shell.controller';
 
-const MODULE_NAME = 'advanced.controllers';
-
-angular.module(MODULE_NAME)
+angular.module('advanced.controllers')
     .config($stateProvider => {
       $stateProvider
             .state('shell', {

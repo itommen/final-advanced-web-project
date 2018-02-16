@@ -2,7 +2,7 @@ import Post from './post.model';
 import _ from 'lodash';
 import empty from 'http-reject-empty';
 
-export function index ({query: {term, filter}}) {
+export function index({ query: { term, filter } }) {
   const query = {};
 
   if (term) {
@@ -13,41 +13,39 @@ export function index ({query: {term, filter}}) {
     query.filter = filter;
   }
 
-  return Post.find({});
+  return Post.find(query);
 }
 
-export function get ({params: {id}}) {
+export function get({ params: { id } }) {
   return Post.findById(id)
-        .then(empty);
+    .then(empty);
 }
 
-export function create ({body}, res) {
+export function create({ body }, res) {
   return Post.create(body)
-        .then(user => {
-          res.status(201);
+    .then(user => {
+      res.status(201);
 
-          return user;
-        });
+      return user;
+    });
 }
 
-export function update ({body, params: {id}}) {
+export function update({ body, params: { id } }) {
   return Post.findById(id)
-        .then(empty)
-        .then(post => {
-          post.author = body.author;
-          post.content = body.content;
-          post.title = body.title;
+    .then(empty)
+    .then(post => {
+      post.author = body.author;
+      post.content = body.content;
+      post.title = body.title;
 
-          return post.save();
-        })
-        .then(_.noop);
+      return post.save();
+    })
+    .then(_.noop);
 }
 
-export function destroy ({params: {id}}) {
+export function destroy({ params: { id } }) {
   return Post.findById(id)
-        .then(empty)
-        .then(post => {
-          return post.remove();
-        })
-        .then(_.noop);
+    .then(empty)
+    .then(post => post.remove())
+    .then(_.noop);
 }

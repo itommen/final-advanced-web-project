@@ -1,8 +1,8 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+const CONTROLLER = 'newPost';
 
-angular.module(MODULE_NAME).controller('newPost', ($scope, Post, $mdDialog) => {
+angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog) => {
   $scope.post = {
     content: '',
     title: '',
@@ -12,12 +12,12 @@ angular.module(MODULE_NAME).controller('newPost', ($scope, Post, $mdDialog) => {
   $scope.savePost = () => {
     $scope.post.date = new Date();
 
-    Post.save($scope.post).$promise
-            .then(() => $mdDialog.hide());
+    return Post.save($scope.post).$promise
+      .then($mdDialog.hide);
   };
 
 
-  $scope.closeModal = () => {
-    return $mdDialog.hide();
-  };
+  $scope.closeModal = $mdDialog.hide;
 });
+
+export default CONTROLLER;

@@ -1,3 +1,9 @@
 {
-  "extends": "noamokman"
+  "extends": "noamokman",
+  "rules": {
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ]
+  }
 }

@@ -1,10 +1,10 @@
 import 'dotenv-extended/config';
-import {join} from 'path';
-import {HotModuleReplacementPlugin, DefinePlugin, ContextReplacementPlugin} from 'webpack';
+import { join } from 'path';
+import { HotModuleReplacementPlugin, DefinePlugin, ContextReplacementPlugin } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import {version} from './package.json';
+import { version } from './package.json';
 
-const {PORT} = process.env;
+const { PORT } = process.env;
 
 export default {
   context: join(__dirname, 'client'),
@@ -36,7 +36,7 @@ export default {
       },
       {
         test: /\.html$/,
-        loader: `ngtemplate?relativeTo=${join(__dirname, 'client')}/$prefix=/!html`
+        loader: 'raw-loader'
       }
     ]
   },

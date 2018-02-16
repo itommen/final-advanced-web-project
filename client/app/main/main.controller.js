@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import newPostDialog from './new-post';
+
 const MODULE_NAME = 'advanced.controllers';
 
 angular.module(MODULE_NAME).controller('main', ($scope, Post, $mdDialog) => {
@@ -17,14 +19,15 @@ angular.module(MODULE_NAME).controller('main', ($scope, Post, $mdDialog) => {
       term = '';
     }
 
-    $scope.posts = Post.query({term, filter});
+    return Post.query({ term, filter }).$promise
+      .then(result => {
+        $scope.posts = result;
+      });
   };
 
-  $scope.openNewPostModal = () => {
-    $mdDialog.show({
-      controller: 'newPost',
-      templateUrl: '/app/main/new-post/new-post.html',
-      clickOutsideToClose: false
-    });
-  };
+  $scope.openNewPostModal = () => $mdDialog.show({
+    controller: newPostDialog.controller,
+    template: newPostDialog.template,
+    clickOutsideToClose: false
+  });
 });

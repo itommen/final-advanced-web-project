@@ -21,17 +21,19 @@ export function get({ params: { id } }) {
     .then(empty);
 }
 
-export function create({ body }, res) {
-  return Post.create(body)
-    .then(user => {
+export function create(io) {
+  return ({ body }, res) => Post.create(body)
+    .then(post => {
       res.status(201);
 
-      return user;
+      io.emit('refresh');
+
+      return Promise.resolve();
     });
 }
 
-export function update({ body, params: { id } }) {
-  return Post.findById(id)
+export function update(io) {
+  return ({ body, params: { id } }) => Post.findById(id)
     .then(empty)
     .then(post => {
       post.author = body.author;
@@ -39,6 +41,11 @@ export function update({ body, params: { id } }) {
       post.title = body.title;
 
       return post.save();
+    })
+    .then(() => {
+      io.emit('posts updated', {
+        test1: 'test!'
+      });
     })
     .then(_.noop);
 }

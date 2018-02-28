@@ -1,4 +1,5 @@
 import angular from 'angular';
+import io from 'socket.io-client';
 
 import newPostDialog from './new-post';
 
@@ -10,6 +11,11 @@ angular.module(MODULE_NAME).controller('main', ($scope, Post, $mdDialog) => {
   $scope.filterBy = '';
 
   $scope.filterTypes = ['author', 'content'];
+
+  const socket = io('http://localhost:8318/');
+  socket.on('refresh', () => {
+    $scope.posts = Post.query();
+  });
 
   $scope.search = () => {
     const filter = $scope.filterBy;

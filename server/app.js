@@ -1,27 +1,21 @@
 import 'dotenv-extended/config';
 import mongoose from 'mongoose';
 import mongooseConfig from './config/mongoose';
-import http from 'http';
 import express from 'express';
 import expressConfig from './config/express';
+import socket from 'socket.io';
 
-
-const mongoInitPromise = mongooseConfig(mongoose);
+mongooseConfig(mongoose);
 
 mongoose.connect(process.env.MONGO_URI);
 
 const app = express();
-const server = http.createServer(app);
+const server = app.listen(process.env.PORT);
 
-expressConfig(app);
+console.log('Express listening on port %s', process.env.PORT);
 
-const expressPromise = new Promise(resolve => {
-  server.listen(process.env.PORT, () => {
-    console.log('Express listening on port %s', process.env.PORT);
-    resolve();
-  });
-});
+const io = socket.listen(server);
+
+expressConfig(app, io);
 
 export default app;
-
-export const appStarted = mongoInitPromise.then(() => expressPromise);

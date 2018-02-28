@@ -40,6 +40,7 @@ export default {
       }
     ]
   },
+  devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.ejs',

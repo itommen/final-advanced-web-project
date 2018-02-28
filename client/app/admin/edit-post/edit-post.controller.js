@@ -1,8 +1,8 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+const CONTROLLER = 'editPost';
 
-angular.module(MODULE_NAME).controller('editPost', ($scope, Post, $mdDialog, $mdToast, post) => {
+angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog, $mdToast, post) => {
   $scope.post = {
     author: post.author,
     content: post.content,
@@ -10,19 +10,19 @@ angular.module(MODULE_NAME).controller('editPost', ($scope, Post, $mdDialog, $md
   };
 
   $scope.editPost = () => {
-    Post.update({id: post._id}, $scope.post).$promise
-            .then(() => $mdDialog.hide())
-            .then(() => {
-              return $mdToast.show(
-                    $mdToast.simple()
-                        .textContent('Post updated!')
-                        .position('bottom left')
-                        .hideDelay(3000)
-                );
-            });
+    Post.update({ id: post._id }, $scope.post).$promise
+      .then(() => $mdDialog.hide())
+      .then(() => {
+        return $mdToast.show(
+          $mdToast.simple()
+            .textContent('Post updated!')
+            .position('bottom left')
+            .hideDelay(3000)
+        );
+      });
   };
 
-  $scope.closeModal = () => {
-    return $mdDialog.hide();
-  };
+  $scope.closeModal = $mdDialog.hide;
 });
+
+export default CONTROLLER;

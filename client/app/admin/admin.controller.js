@@ -1,13 +1,15 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+import { remove } from 'lodash';
 
-angular.module(MODULE_NAME).controller('admin', ($scope, Post, $mdDialog, $mdToast) => {
+import editPostDialog from './edit-post';
+
+angular.module('advanced.controllers').controller('admin', ($scope, Post, $mdDialog, $mdToast) => {
   $scope.posts = Post.query();
 
   $scope.editPost = post => $mdDialog.show({
-    controller: 'editPost',
-    templateUrl: '/app/admin/edit-post/edit-post.html',
+    controller: editPostDialog.controller,
+    template: editPostDialog.template,
     clickOutsideToClose: false,
     locals: {
       post
@@ -15,8 +17,9 @@ angular.module(MODULE_NAME).controller('admin', ($scope, Post, $mdDialog, $mdToa
   });
 
   $scope.deletePost = post => Post.delete({ id: post._id }).$promise
+    .then(() => remove($scope.posts, ({ _id }) => _id === post._id))
     .then(() => $mdToast.show($mdToast.simple()
-      .textContent('Post updated!')
+      .textContent('Post deleted!')
       .position('bottom left')
       .hideDelay(3000)
     ));

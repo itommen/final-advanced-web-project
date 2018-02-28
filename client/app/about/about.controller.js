@@ -1,16 +1,6 @@
 import angular from 'angular';
 
 angular.module('advanced.controllers').controller('about', ($scope, $http) => {
-  const canvas = document.getElementById('canvas');
-  const context = canvas.getContext('2d');
-  const imageObj = new Image();
-
-  imageObj.src = 'https://yt3.ggpht.com/0v8T0CTAv8VPxA5lJtz-tqJe-tR-3VQc0ONhD6Az2RWjNRnwh5QQzPYz5I7wbYljU_tQjZ2ok2W59_v_=s900-nd-c-c0xffffffff-rj-k-no';
-
-  imageObj.onload = function () {
-    context.drawImage(imageObj, 500, 500);
-  };
-
   const URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
   const request = {

@@ -4,7 +4,7 @@
             <input placeholder="חיפוש" type="text">
         </md-input-container>
     </div>
-    <md-list flex>
+    <md-list flex layout="row" style="overflow-y:auto" layout-align layout-wrap>
         <md-list-item ng-repeat="post in posts | orderBy: '-date' track by post._id" flex>
             <md-card layout-padding>
                 <md-card-header-text layout="column">

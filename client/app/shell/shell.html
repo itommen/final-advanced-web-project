@@ -1,5 +1,9 @@
 <div flex layout="column">
-    <md-toolbar flex="10" class="md-primary">Recepies</md-toolbar>
+    <md-toolbar flex="10" class="md-primary">
+        <span>
+            Recepies
+        </span>
+    </md-toolbar>
     <div layout="row" flex>
         <nav layout="row" flex="15">
             <md-sidenav flex layout="column" layout-align="space-around" md-whiteframe="4" md-is-locked-open="true" class="md-sidenav-right"
@@ -14,6 +18,6 @@
                 </footer>
             </md-sidenav>
         </nav>
-        <div flex layout="column" ui-view></div>
+        <div flex layout="column" ui-view layout-padding></div>
     </div>
 </div>

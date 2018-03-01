@@ -5,7 +5,7 @@ export function index () {
   return User.find({});
 }
 
-export function get ({params: {id}}) {
+export function get ({ params: { id } }) {
   return User.findById(id)
         .then(empty);
 }

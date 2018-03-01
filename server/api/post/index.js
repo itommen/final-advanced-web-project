@@ -3,7 +3,7 @@ import * as controller from './post.controller';
 import objectId from 'express-param-objectid';
 import paginate from 'express-paginate';
 
-export default (io) => {
+export default io => {
   const router = new AsyncRouter();
 
   router.param('id', objectId);

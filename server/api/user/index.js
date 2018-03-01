@@ -1,4 +1,4 @@
-import {AsyncRouter} from 'express-async-router';
+import { AsyncRouter } from 'express-async-router';
 import * as controller from './user.controller';
 import objectId from 'express-param-objectid';
 import paginate from 'express-paginate';

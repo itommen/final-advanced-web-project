@@ -13,6 +13,7 @@ angular.module(MODULE_NAME).controller('main', ($scope, Post, $mdDialog) => {
   $scope.filterTypes = ['author', 'content'];
 
   const socket = io('http://localhost:8318/');
+
   socket.on('refresh', () => {
     $scope.posts = Post.query();
   });

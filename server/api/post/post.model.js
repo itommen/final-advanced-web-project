@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import {createSeedModel} from 'mongoose-plugin-seed';
+import { createSeedModel } from 'mongoose-plugin-seed';
 import seed from './post.seed';
 import mongoosePaginate from 'mongoose-paginate';
 
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const PostSchema = new Schema({
   content: {

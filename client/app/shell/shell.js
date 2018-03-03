@@ -1,5 +1,6 @@
 import angular from 'angular';
 import './shell.controller';
+import './shell.less';
 
 angular.module('advanced.controllers')
     .config($stateProvider => {

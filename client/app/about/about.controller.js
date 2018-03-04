@@ -1,6 +1,8 @@
 import angular from 'angular';
 
-angular.module('advanced.controllers').controller('about', ($scope, $http) => {
+const CONTROLLER = 'aboutController';
+
+angular.module('advanced.controllers').controller(CONTROLLER, ($scope, $http) => {
   const URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
   const request = {
@@ -20,3 +22,5 @@ angular.module('advanced.controllers').controller('about', ($scope, $http) => {
       $scope.data = response.data.list[0].weather[0].description;
     });
 });
+
+export default CONTROLLER;

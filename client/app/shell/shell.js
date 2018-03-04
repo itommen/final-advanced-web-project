@@ -1,5 +1,8 @@
 import angular from 'angular';
-import './shell.controller';
+
+import controller from './shell.controller';
+import template from './shell.html';
+
 import './shell.less';
 
 angular.module('advanced.controllers')
@@ -7,7 +10,7 @@ angular.module('advanced.controllers')
       $stateProvider
             .state('shell', {
               abstract: true,
-              templateUrl: 'app/shell/shell.html',
-              controller: 'shell'
+              template,
+              controller
             });
     });

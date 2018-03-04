@@ -4,7 +4,10 @@ import { remove } from 'lodash';
 
 import editPostDialog from './edit-post';
 
-angular.module('advanced.controllers').controller('admin', ($scope, Post, $mdDialog, $mdToast) => {
+const CONTROLLER = 'adminController';
+
+angular.module('advanced.controllers')
+.controller(CONTROLLER, ($scope, Post, $mdDialog, $mdToast) => {
   $scope.posts = Post.query();
 
   $scope.editPost = post => $mdDialog.show({
@@ -24,3 +27,5 @@ angular.module('advanced.controllers').controller('admin', ($scope, Post, $mdDia
       .hideDelay(3000)
     ));
 });
+
+export default CONTROLLER;

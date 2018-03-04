@@ -1,5 +1,8 @@
 import angular from 'angular';
-import './about.controller';
+
+import controller from './about.controller';
+import template from './about.html';
+
 import './about.less';
 
 const MODULE_NAME = 'advanced.controllers';
@@ -9,7 +12,7 @@ angular.module(MODULE_NAME)
       $stateProvider
             .state('shell.about', {
               url: '/about',
-              templateUrl: 'app/about/about.html',
-              controller: 'about'
+              template,
+              controller
             });
     });

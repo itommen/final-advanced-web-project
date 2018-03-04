@@ -3,9 +3,9 @@ import io from 'socket.io-client';
 
 import newPostDialog from './new-post';
 
-const MODULE_NAME = 'advanced.controllers';
+const CONTROLLER = 'mainController';
 
-angular.module(MODULE_NAME).controller('main', ($scope, Post, $mdDialog) => {
+angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog) => {
   $scope.posts = Post.query();
   $scope.searchTerm = '';
   $scope.filterBy = '';
@@ -38,3 +38,5 @@ angular.module(MODULE_NAME).controller('main', ($scope, Post, $mdDialog) => {
     clickOutsideToClose: false
   });
 });
+
+export default CONTROLLER;

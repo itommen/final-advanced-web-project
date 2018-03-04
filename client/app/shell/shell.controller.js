@@ -2,10 +2,10 @@ import angular from 'angular';
 
 import logo from './logo2.jpg';
 
-const MODULE_NAME = 'advanced.controllers';
+const CONTROLLER = 'shellController';
 
-angular.module(MODULE_NAME)
-  .controller('shell', $scope => {
+angular.module('advanced.controllers')
+  .controller(CONTROLLER, $scope => {
     // const image = new Image();
 
     // image.onload = () => {
@@ -19,3 +19,5 @@ angular.module(MODULE_NAME)
 
     console.log('shell');
   });
+
+export default CONTROLLER;

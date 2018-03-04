@@ -1,8 +1,9 @@
 import angular from 'angular';
-import './main.controller';
+
+import controller from './main.controller';
+import template from './main.html';
+
 import './main.less';
-import './new-post/new-post.controller';
-import './new-post/new-post.less';
 
 const MODULE_NAME = 'advanced.controllers';
 
@@ -11,7 +12,7 @@ angular.module(MODULE_NAME)
       $stateProvider
             .state('shell.main', {
               url: '/',
-              templateUrl: 'app/main/main.html',
-              controller: 'main'
+              template,
+              controller
             });
     });

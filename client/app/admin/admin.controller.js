@@ -7,7 +7,9 @@ import editPostDialog from './edit-post';
 const CONTROLLER = 'adminController';
 
 angular.module('advanced.controllers')
-.controller(CONTROLLER, ($scope, Post, $mdDialog, $mdToast) => {
+.controller(CONTROLLER, ($scope, Post, $mdDialog, $mdToast, LoggedUser) => {
+  LoggedUser.ensureLogged();
+
   $scope.posts = Post.query();
 
   $scope.editPost = post => $mdDialog.show({

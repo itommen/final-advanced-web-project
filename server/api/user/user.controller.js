@@ -14,14 +14,18 @@ export function destroy() {
   return null;
 }
 
-export function update() {
-  return null;
+export function login({ body }, res) {
+  return User.find(body)
+    .then(result => {
+      if (result.length !== 1) {
+        return Promise.reject();
+      }
+
+      res.status(201);
+
+      return result[0];
+    });
 }
-
-// export function create({ body }, res) {
-//   console.log('HERE1');
-
-// }
 
 export function create({ body }, res) {
   return User.create(body)

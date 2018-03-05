@@ -5,7 +5,9 @@ import newPostDialog from './new-post';
 
 const CONTROLLER = 'mainController';
 
-angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog) => {
+angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog, LoggedUser) => {
+  LoggedUser.ensureLogged();
+
   $scope.posts = Post.query();
   $scope.searchTerm = '';
   $scope.filterBy = '';

@@ -1,8 +1,12 @@
 <div flex layout="column">
-    <md-toolbar flex="10" class="md-primary" layout-padding>
+    <md-toolbar flex="10" layout="row" class="md-primary" layout-padding>
         <h1 class="header">
             Recepies
         </h1>
+        <div flex></div>
+        <div>
+            <md-button ng-click="logout()" ng-if="isLogged">Logout</md-button>
+        </div>
     </md-toolbar>
     <div layout="row" flex>
         <nav layout="row" flex="15">

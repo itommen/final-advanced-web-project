@@ -4,7 +4,7 @@ angular.module('advanced.services')
     .factory('User', $resource => $resource('/api/users/:id/:controller', {
       id: '@_id'
     }, {
-      update: {
+      login: {
         method: 'PUT'
       }
     }));

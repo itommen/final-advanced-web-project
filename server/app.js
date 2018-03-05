@@ -5,6 +5,11 @@ import express from 'express';
 import expressConfig from './config/express';
 import socket from 'socket.io';
 
+// DEBUG ONLY!
+import process from 'process';
+console.log(process.pid);
+//process.children.map(console.log);
+
 mongooseConfig(mongoose);
 
 mongoose.connect(process.env.MONGO_URI);

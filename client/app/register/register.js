@@ -1,15 +1,13 @@
 import angular from 'angular';
 
-import controller from './admin.controller';
-import template from './admin.html';
-
-import './edit-post/edit-post.less';
+import controller from './register.controller';
+import template from './register.html';
 
 angular.module('advanced.controllers')
     .config($stateProvider => {
       $stateProvider
-            .state('shell.admin', {
-              url: '/admin',
+            .state('shell.register', {
+              url: '/register',
               template,
               controller
             });

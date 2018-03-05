@@ -10,5 +10,6 @@ require('./shell/shell');
 require('./main/main');
 require('./admin/admin');
 require('./about/about');
+require('./register/register');
 
 export default MODULE_NAME;

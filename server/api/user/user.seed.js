@@ -1,10 +1,9 @@
 export default {
   seed () {
     return [{
-      username: 'Sharon',
+      userName: 'Sharon',
       password: '123',
-      admin: true,
-      name: 'Sharon Grossman'
+      admin: true
     }];
   }
 };

@@ -2,7 +2,7 @@ import Post from './post.model';
 import _ from 'lodash';
 import empty from 'http-reject-empty';
 
-export function index ({ query: { term, filter } }) {
+export function index({ query: { term, filter } }) {
   const query = {};
 
   if (term) {
@@ -16,12 +16,12 @@ export function index ({ query: { term, filter } }) {
   return Post.find(query);
 }
 
-export function get ({ params: { id } }) {
+export function get({ params: { id } }) {
   return Post.findById(id)
     .then(empty);
 }
 
-export function create (io) {
+export function create(io) {
   return ({ body }, res) => Post.create(body)
     .then(() => {
       console.log('HERE2');
@@ -33,7 +33,7 @@ export function create (io) {
     });
 }
 
-export function update (io) {
+export function update(io) {
   return ({ body, params: { id } }) => Post.findById(id)
     .then(empty)
     .then(post => {
@@ -49,7 +49,7 @@ export function update (io) {
     .then(_.noop);
 }
 
-export function destroy ({ params: { id } }) {
+export function destroy({ params: { id } }) {
   return Post.findById(id)
     .then(empty)
     .then(post => post.remove())

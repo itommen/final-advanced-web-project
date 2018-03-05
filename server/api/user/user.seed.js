@@ -1,5 +1,5 @@
 export default {
-  seed () {
+  seed() {
     return [{
       userName: 'Sharon',
       password: '123',

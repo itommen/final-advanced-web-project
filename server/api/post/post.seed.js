@@ -1,5 +1,5 @@
 export default {
-  seed () {
+  seed() {
     return [{
       content: 'content',
       title: 'title',

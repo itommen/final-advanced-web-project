@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 angular.module('advanced.services')
-  .service('LoggedUser', ($state) => {
+  .service('LoggedUser', $state => {
     let loggedUser;
 
     const login = user => {

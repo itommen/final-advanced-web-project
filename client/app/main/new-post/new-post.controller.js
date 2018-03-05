@@ -2,11 +2,13 @@ import angular from 'angular';
 
 const CONTROLLER = 'newPost';
 
-angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog) => {
+angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog, LoggedUser) => {
+  const loggedUser = LoggedUser.get();
+  
   $scope.post = {
     content: '',
     title: '',
-    author: ''
+    author: loggedUser.userName
   };
 
   $scope.savePost = () => {

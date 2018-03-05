@@ -12,5 +12,6 @@ require('./admin/admin');
 require('./about/about');
 require('./register/register');
 require('./login/login');
+require('./statistics/statistics');
 
 export default MODULE_NAME;

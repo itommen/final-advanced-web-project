@@ -1,68 +1,85 @@
 import angular from 'angular';
 
-// import d3 from 'd3';
+//import d3 from 'd3';
 
 const CONTROLLER = 'statisticsController';
 
 angular.module('advanced.controllers')
-  .controller(CONTROLLER, (Post) => {
-    const initPostGraph = () => {
+  .controller(CONTROLLER, ($scope, $state, Post) => {
+    $scope.createDetailedRecipesGraph = () => {
       const margin = { top: 20, right: 30, bottom: 30, left: 40 };
       const width = 960 - margin.left - margin.right;
       const height = 500 - margin.top - margin.bottom;
 
-      debugger
-      const x = d3.scaleOrdinal()
-        .range([0, width], 0.1);
+      // set the ranges
+      const x = d3.scale.ordinal().range([0, width], 0.1);
+      const y = d3.scale.linear().range([height, 0]);
 
-      const y = d3.scaleLinear()
-        .range([height, 0]);
+      // const xAxis = d3.axisBottom(x);
+      // const yAxis = d3.axisLeft(y);
 
-      const xAxis = d3.axisBottom(x);
+      var xAxis = d3.svg.axis().scale(x).orient("bottom");
+      var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
 
-      const yAxis = d3.axisLeft(y);
+      // const chart = d3.select('.chart')
+      //   .attr('width', width + margin.left + margin.right)
+      //   .attr('height', height + margin.top + margin.bottom)
+      //   .append('g')
+      //   .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-      const chart = d3.select('.chart')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .append('g')
-        .attr('transform', `translate(${margin.left}, ${margin.top})`);
+      // add the SVG element
+      var svg = d3.select("#detailed-recipes-graph").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      let data = [{ name: 'a', value: 1 }, { name: 'b', value: 2 }, { name: 'c', value: 3 }];
+      // TODO: Get real recipes' data instead of stubs
+      let data = [{ Title: 'Cake recipe', Length: 10 }, { Title: 'Salad recipe', Length: 20 }, { Title: 'Soup recipe', Length: 30 }];
+
+      // load the data
+      data.forEach(function (d) {
+        d.Title = d.Title;
+        d.Length = +d.Length;
+      });
 
       Promise.resolve()
         .then(() => {
-          x.domain(data.map(d => {
-            return d.name;
-          }));
-          y.domain([0, d3.max(data, d => {
-            return d.value;
-          })]);
+          // scale the range of the data
+          x.domain(data.map(d => { return d.Title; }));
+          y.domain([0, d3.max(data, d => { return d.Length; })]);
 
-          chart.append('g')
-            .attr('class', 'x axis')
-            .attr('transform', `translate(0, ${height})`)
-            .call(xAxis);
+          // add axis
+          svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", "-.55em")
+            .attr("transform", "rotate(-90)");
 
-          chart.append('g')
-            .attr('class', 'y axis')
-            .call(yAxis);
+          svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 5)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Length");
 
-          chart.selectAll('.bar')
+          // Add bar chart
+          svg.selectAll("bar")
             .data(data)
             .enter()
-            .append('rect')
-            .attr('class', 'bar')
-            .attr('x', d => {
-              return x(d.name);
-            })
-            .attr('y', d => {
-              return y(d.value);
-            })
-            .attr('height', d => {
-              return height - y(d.value);
-            })
-            .attr('width', 100);
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", function (d) { return x(d.Title); })
+            .attr("width", x.rangeBand())
+            .attr("y", function (d) { return y(d.Length); })
+            .attr("height", function (d) { return height - y(d.Length); });
         });
     };
   });

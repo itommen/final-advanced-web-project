@@ -6,6 +6,14 @@ import mongoosePaginate from 'mongoose-paginate';
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
   userName: {
     type: String,
     required: true

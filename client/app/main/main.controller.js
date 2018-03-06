@@ -5,14 +5,19 @@ import newPostDialog from './new-post';
 
 const CONTROLLER = 'mainController';
 
-angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog, LoggedUser) => {
+angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, User, $mdDialog, LoggedUser) => {
   LoggedUser.ensureLogged();
 
+  $scope.showUsers = false;
   $scope.posts = Post.query();
-  $scope.searchTerm = '';
-  $scope.filterBy = '';
+  $scope.users = User.query();
+  $scope.postSearchTerm = '';
+  $scope.postFilterBy = '';
+  $scope.userSearchTerm = '';
+  $scope.userFilterBy = '';
 
-  $scope.filterTypes = ['author', 'content'];
+  $scope.postFilterTypes = ['author', 'title', 'content'];
+  $scope.userFilterTypes = ['firstname', 'lastname', 'userName'];
 
   const socket = io('http://localhost:8318/');
 
@@ -20,9 +25,11 @@ angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $md
     $scope.posts = Post.query();
   });
 
-  $scope.search = () => {
-    const filter = $scope.filterBy;
-    let term = $scope.searchTerm;
+  $scope.searchPost = () => {
+    $scope.showUsers = false;
+
+    const filter = $scope.postFilterBy;
+    let term = $scope.postSearchTerm;
 
     if (!filter) {
       term = '';
@@ -31,6 +38,22 @@ angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $md
     return Post.query({ term, filter }).$promise
       .then(result => {
         $scope.posts = result;
+      });
+  };
+
+  $scope.searchUser = () => {
+    $scope.showUsers = true;
+
+    const filter = $scope.userFilterBy;
+    let term = $scope.userSearchTerm;
+
+    if (!filter) {
+      term = '';
+    }
+
+    return User.query({ term, filter }).$promise
+      .then(result => {
+        $scope.users = result;
       });
   };
 

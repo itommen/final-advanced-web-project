@@ -2,6 +2,12 @@
   <md-card layout="column" flex="50" layout-padding>
     <h1>Register </h1>
     <md-input-container>
+        <input type="text" placeholder="first name" ng-model="user.firstname">
+      </md-input-container>
+      <md-input-container>
+          <input type="text" placeholder="last name" ng-model="user.lastname">
+        </md-input-container>
+    <md-input-container>
       <input type="text" placeholder="user name" ng-model="user.userName">
     </md-input-container>
     <md-input-container>
@@ -12,7 +18,7 @@
     </md-checkbox>
 
     <div>
-      <md-button ng-click="register()" ng-disabled="!user.userName || !user.password">Register!</md-button>
+      <md-button ng-click="register()" ng-disabled="!user.userName || !user.password || !user.firstname || !user.lastname">Register!</md-button>
       <md-button ui-sref="shell.login">Already a user? Login!</md-button>
     </div>
   </md-card>

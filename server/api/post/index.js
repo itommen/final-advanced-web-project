@@ -11,6 +11,7 @@ export default io => {
   router.use(paginate.middleware(10, 50));
 
   router.get('/', controller.index);
+  router.get('/byUsername', controller.getByUsername);
   router.get('/:id', controller.get);
   router.post('/', controller.create(io));
   router.put('/:id', controller.update(io));

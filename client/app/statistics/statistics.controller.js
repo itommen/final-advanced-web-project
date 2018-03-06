@@ -4,7 +4,7 @@ const CONTROLLER = 'statisticsController';
 
 angular.module('advanced.controllers')
   .controller(CONTROLLER, ($scope, $state, Post, LoggedUser) => {
-    LoggedUser.ensureLogged();
+    //LoggedUser.ensureLogged();
 
     $scope.createDetailedRecipesGraph = () => {
       const margin = { top: 20, right: 30, bottom: 150, left: 40 };
@@ -82,6 +82,7 @@ angular.module('advanced.controllers')
 
       var color = d3.scale.ordinal()
         .range(["#a05d56", "#6b486b", "#ff8c00", "#98abc5", "#8a89a6", "#d0743c", "#7b6888"]);
+      debugger;
 
       var arc = d3.svg.arc()
         .outerRadius(radius - 10)
@@ -93,33 +94,32 @@ angular.module('advanced.controllers')
         .append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-      var data = Post.aggregate([
-        { $group: { _id: "$author", posts: { $push: "$title" } } }
-      ]);
-      debugger
+      Post.byUsername().$promise
+        .then((data) => {
+          debugger;
+          var pie = d3.layout.pie()
+            .sort(null)
+            .value(({ count }) => count);
 
-      var pie = d3.layout.pie()
-        .sort(null)
-        .value(function (d) { return d.Count; });
+          data.forEach(function (d) {
+            d.count = +d.count;
+          });
 
-      data.forEach(function (d) {
-        d.Count = + d.Count;
-      });
+          var g = svg.selectAll(".arc")
+            .data(pie(data))
+            .enter().append("g")
+            .attr("class", "arc");
 
-      var g = svg.selectAll(".arc")
-        .data(pie(data))
-        .enter().append("g")
-        .attr("class", "arc");
+          g.append("path")
+            .attr("d", arc)
+            .style("fill", ({ _id }) => color(_id));
 
-      g.append("path")
-        .attr("d", arc)
-        .style("fill", function (d) { return color(d.data.userName); });
-
-      g.append("text")
-        .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
-        .attr("dy", ".35em")
-        .style("text-anchor", "middle")
-        .text(function (d) { return d.data.userName; });
+          g.append("text")
+            .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+            .attr("dy", ".35em")
+            .style("text-anchor", "middle")
+            .text(({ _id }) => _id);
+        });
     };
   });
 

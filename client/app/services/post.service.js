@@ -6,5 +6,10 @@ angular.module('advanced.services')
     }, {
       update: {
         method: 'PUT'
+      },
+      byUsername: {
+        method: 'GET',
+        url: 'api/posts/byUsername',
+        isArray: true
       }
     }));

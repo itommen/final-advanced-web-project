@@ -15,6 +15,17 @@ export function get({ params: { id } }) {
     .then(empty);
 }
 
+export function getByUsername() {
+  return Post.aggregate([
+    {
+      $group: {
+        _id: '$author',
+        count: {$sum: 1}
+      }
+    }
+  ]);
+}
+
 export function create(io) {
   return ({ body }, res) => Post.create(body)
     .then(() => {

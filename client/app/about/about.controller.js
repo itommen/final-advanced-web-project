@@ -17,8 +17,13 @@ angular.module('advanced.controllers').controller(CONTROLLER, ($scope, $http, Lo
       cnt: '7',
       appid: '51382f05320b25f9782e3ce520ca2e19'
     }
+    
   };
-
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.font = "30px Arial";
+ctx.fillStyle = "black";
+ctx.fillText("Enjoy!!:))))",10,50);
   $http(request)
     .then(response => {
       $scope.data = response.data.list[0].weather[0].description;

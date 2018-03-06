@@ -18,7 +18,6 @@ export function get({ params: { id } }) {
 export function create(io) {
   return ({ body }, res) => Post.create(body)
     .then(() => {
-      console.log('HERE2');
       res.status(201);
 
       io.emit('refresh');

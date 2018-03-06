@@ -1,4 +1,4 @@
-<md-dialog class="dialog">
+<md-dialog class="dialog" flex=65>
     <md-toolbar class="md-primary">
         <div class="md-toolbar-tools">
             <h2>Submit a new post</h2>
@@ -17,9 +17,11 @@
                         <input placeholder="title" required md-maxlength="20" maxlength="20" type="text" ng-model="post.title">
                     </md-input-container>
                 </div>
-                <md-input-container>
-                    <textarea md-maxlength="100" maxlength="100" required placeholder="content" type="text" ng-model="post.content"></textarea>
-                </md-input-container>
+                <div layout="column">
+                    <md-input-container>
+                        <textarea md-maxlength="1500" maxlength="1500" rows="15" required placeholder="content" type="text" ng-model="post.content"></textarea>
+                    </md-input-container>
+                </div>
             </form>
         </div>
     </md-dialog-content>

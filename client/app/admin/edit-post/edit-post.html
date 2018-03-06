@@ -1,7 +1,7 @@
-<md-dialog class="dialog">
+<md-dialog class="dialog" flex=65>
     <md-toolbar class="md-primary">
         <div class="md-toolbar-tools">
-            <h2>Edit an existing new post</h2>
+            <h2>Edit an existing post</h2>
             <span flex></span>
             <md-button class="md-icon-button md-accent" ng-click="closeModal()">
                 <i class="mdi mdi-close mdi-24px"></i>
@@ -12,16 +12,18 @@
         <div class="md-dialog-content">
             <form>
                 <div layout="row">
-                <md-input-container>
-                    <input placeholder="author" required maxlength="35" md-maxlength="35" type="text" ng-model="post.author">
-                </md-input-container>
-                <md-input-container>
-                    <input placeholder="title" required maxlength="20" md-maxlength="20" type="text" ng-model="post.title">
-                </md-input-container>
+                    <md-input-container>
+                        <input placeholder="author" required maxlength="35" md-maxlength="35" type="text" ng-model="post.author">
+                    </md-input-container>
+                    <md-input-container>
+                        <input placeholder="title" required maxlength="20" md-maxlength="20" type="text" ng-model="post.title">
+                    </md-input-container>
                 </div>
-                <md-input-container>
-                    <textarea md-maxlength="100" maxlength="100" required placeholder="content" type="text" ng-model="post.content"></textarea>
-                </md-input-container>
+                <div layout="column">
+                    <md-input-container>
+                        <textarea md-maxlength="1500" maxlength="1500" rows="15" required placeholder="content" type="text" ng-model="post.content"></textarea>
+                    </md-input-container>
+                </div>
             </form>
         </div>
     </md-dialog-content>

@@ -22,7 +22,7 @@ angular.module('advanced', [
 ])
     .config(($urlRouterProvider, $locationProvider, $mdThemingProvider) => {
       $mdThemingProvider.theme('default')
-            .primaryPalette('blue', {
+            .primaryPalette('purple', {
               default: '500'
             })
             .warnPalette('blue-grey', {

@@ -3,15 +3,9 @@ import _ from 'lodash';
 import empty from 'http-reject-empty';
 
 export function index({ query: { term, filter } }) {
-  const query = {};
-
-  if (term) {
-    query.term = term;
-  }
-
-  if (filter) {
-    query.filter = filter;
-  }
+  const query = term && filter ? {
+    [filter]: new RegExp(term)
+  } : {};
 
   return Post.find(query);
 }

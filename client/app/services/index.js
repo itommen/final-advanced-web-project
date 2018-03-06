@@ -7,6 +7,7 @@ angular.module(MODULE_NAME, [angularResource]);
 
 require('./user.service');
 require('./post.service');
+require('./map.service');
 require('./logged-user.service');
 
 export default MODULE_NAME;

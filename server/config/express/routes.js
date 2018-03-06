@@ -1,11 +1,14 @@
 import userRoute from '../../api/user';
 import postRoute from '../../api/post';
+import mapRoute from '../../api/map';
+
 import createError from 'http-errors';
 import { join } from 'fs';
 
 export default (app, io) => {
   app.use('/api/users', userRoute);
   app.use('/api/posts', postRoute(io));
+  app.use('/api/map', mapRoute);
 
   // All undefined api routes should return a 404
   app.route('/:url(api/*)')

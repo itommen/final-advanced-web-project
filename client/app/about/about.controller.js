@@ -2,9 +2,13 @@ import angular from 'angular';
 
 const CONTROLLER = 'aboutController';
 
-angular.module('advanced.controllers').controller(CONTROLLER, ($scope, $http, LoggedUser) => {
+angular.module('advanced.controllers').controller(CONTROLLER, ($scope, $http, Map, LoggedUser) => {
   LoggedUser.ensureLogged();
 
+  Map.query().$promise
+    .then((result) => {
+      $scope.location = result[0];
+    });
   const URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
   const request = {

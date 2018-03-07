@@ -12,6 +12,5 @@ router.get('/', controller.index);
 router.get('/:id', controller.get);
 router.post('/', controller.create);
 router.put('/', controller.login);
-router.delete('/:id', controller.destroy);
 
 export default router;

@@ -14,10 +14,6 @@ export function get({ params: { id } }) {
     .then(empty);
 }
 
-export function destroy() {
-  return null;
-}
-
 export function login({ body }, res) {
   return User.find(body)
     .then(result => {

@@ -24,8 +24,6 @@ angular.module('advanced.controllers')
     $scope.isLogged = false;
 
     $scope.image = logo;
-
-    console.log('shell');
   });
 
 export default CONTROLLER;

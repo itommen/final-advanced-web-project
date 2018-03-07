@@ -1,4 +1,5 @@
 import Post from './post.model';
+import User from '../user/user.model';
 import _ from 'lodash';
 import empty from 'http-reject-empty';
 
@@ -15,12 +16,29 @@ export function get({ params: { id } }) {
     .then(empty);
 }
 
+export function getRecomendedPost({ params: { id } }) {
+  return User.findById(id)
+    .then(user => Post.find({})
+      .then(result => {
+        const userPosts = result.filter(x => x.author === user.userName);
+        const notUserPosts = result.filter(x => x.author !== user.userName);
+
+        const difficulties = userPosts.map(({ difficulty }) => difficulty);
+        const avg = Math.round(difficulties.reduce((a, b) => a + b) / difficulties.length);
+
+        const rec = notUserPosts.find(x => x.difficulty === avg);
+
+        return rec ? Promise.resolve(rec)
+          : Promise.reject();
+      }));
+}
+
 export function getByUsername() {
   return Post.aggregate([
     {
       $group: {
         _id: '$author',
-        count: {$sum: 1}
+        count: { $sum: 1 }
       }
     }
   ]);

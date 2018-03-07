@@ -11,5 +11,9 @@ angular.module('advanced.services')
         method: 'GET',
         url: 'api/posts/byUsername',
         isArray: true
+      },
+      recomended: {
+        method: 'GET',
+        url: 'api/posts/:id/recomended'
       }
     }));

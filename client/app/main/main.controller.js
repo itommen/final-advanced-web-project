@@ -8,6 +8,8 @@ const CONTROLLER = 'mainController';
 angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, User, $mdDialog, LoggedUser) => {
   LoggedUser.ensureLogged();
 
+  const logged = LoggedUser.get()._id;
+
   $scope.showUsers = false;
   $scope.posts = Post.query();
   $scope.users = User.query();
@@ -24,6 +26,13 @@ angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, Use
   socket.on('refresh', () => {
     $scope.posts = Post.query();
   });
+
+  Post.recomended({
+    id: logged
+  }).$promise
+    .then(result => {
+      $scope.recomendedPost = result;
+    });
 
   $scope.searchPost = () => {
     $scope.showUsers = false;

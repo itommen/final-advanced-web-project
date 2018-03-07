@@ -5,10 +5,12 @@ const CONTROLLER = 'newPost';
 angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $mdDialog, LoggedUser) => {
   const loggedUser = LoggedUser.get();
 
+  $scope.difficulties = [1, 2, 3];
   $scope.post = {
     content: '',
     title: '',
-    author: loggedUser.userName
+    author: loggedUser.userName,
+    difficulty: 1
   };
 
   $scope.savePost = () => {
@@ -17,7 +19,6 @@ angular.module('advanced.controllers').controller(CONTROLLER, ($scope, Post, $md
     return Post.save($scope.post).$promise
       .then($mdDialog.hide);
   };
-
 
   $scope.closeModal = $mdDialog.hide;
 });

@@ -14,15 +14,6 @@ angular.module('advanced.controllers')
     $scope.loggedUser = LoggedUser.get();
     $scope.isLogged = !!$scope.loggedUser;
 
-    // const image = new Image();
-
-    // image.onload = () => {
-    //   const ctx = document.getElementById('logo').getContext('2d');
-
-    //   ctx.drawImage(image, 2031, 102);
-    // };
-    // image.src = logo;
-
     $scope.image = logo;
 
     console.log('shell');

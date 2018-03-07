@@ -1,4 +1,5 @@
 import angular from 'angular';
+import io from 'socket.io-client';
 
 import { remove } from 'lodash';
 
@@ -9,6 +10,11 @@ const CONTROLLER = 'adminController';
 angular.module('advanced.controllers')
 .controller(CONTROLLER, ($scope, Post, $mdDialog, $mdToast, LoggedUser) => {
   LoggedUser.ensureLogged();
+
+  const socket = io('http://localhost:8318/');
+  socket.on('refresh', () => {
+    $scope.posts = Post.query();
+  });
 
   $scope.posts = Post.query();
 

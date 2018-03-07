@@ -20,6 +20,12 @@
                     </md-input-container>
                 </div>
                 <div layout="column">
+                    <label>difficulty</label>
+                    <md-select ng-model="post.difficulty">
+                        <md-option ng-repeat="difficulty in difficulties" ng-value="difficulty">{{difficulty}}</md-option>
+                    </md-select>
+                </div>
+                <div layout="column">
                     <md-input-container>
                         <textarea md-maxlength="1500" maxlength="1500" rows="15" required placeholder="content" type="text" ng-model="post.content"></textarea>
                     </md-input-container>

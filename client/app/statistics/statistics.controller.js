@@ -4,7 +4,7 @@ const CONTROLLER = 'statisticsController';
 
 angular.module('advanced.controllers')
   .controller(CONTROLLER, ($scope, $state, Post, LoggedUser) => {
-    //LoggedUser.ensureLogged();
+    LoggedUser.ensureLogged();
 
     $scope.createDetailedRecipesGraph = () => {
       // get the recipes' data

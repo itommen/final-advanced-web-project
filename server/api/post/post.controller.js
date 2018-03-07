@@ -44,6 +44,7 @@ export function update(io) {
       post.author = body.author;
       post.content = body.content;
       post.title = body.title;
+      post.difficulty = body.difficulty;
 
       return post.save();
     })

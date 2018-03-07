@@ -11,11 +11,10 @@
                         <span class="md-headline">{{post.title}}</span>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content>
-                    <p>
-                        {{post.content}}
-                    </p>
-                </md-card-content>
+                <label>difficulty: {{post.difficulty}}</label>
+                <div style="column-count: 3; column-gap:40px; column-rule: 1px solid lightgrey">
+                    {{post.content}}
+                </div>
                 <md-card-actions layout="row" layout-align="end center">
                     <md-button ng-click="editPost(post)">Edit</md-button>
                     <md-button ng-click="deletePost(post)">Delete</md-button>

@@ -10,6 +10,10 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
+  difficulty: {
+    type: Number,
+    required: true
+  },
   title: {
     type: String,
     required: true

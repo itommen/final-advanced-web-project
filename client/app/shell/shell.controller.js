@@ -11,17 +11,17 @@ angular.module('advanced.controllers')
       $state.transitionTo('shell.login', {}, { location: 'replace' });
     };
 
-    $scope.loggedUser = LoggedUser.get();
-    $scope.isLogged = !!$scope.loggedUser;
 
-    // const image = new Image();
+    LoggedUser.onLogin(() => {
+      $scope.isAdmin = LoggedUser.get().admin;
+      $scope.isLogged = true;
+    });
 
-    // image.onload = () => {
-    //   const ctx = document.getElementById('logo').getContext('2d');
+    LoggedUser.onLogout(() => {
+      $scope.isLogged = false;
+    });
 
-    //   ctx.drawImage(image, 2031, 102);
-    // };
-    // image.src = logo;
+    $scope.isLogged = false;
 
     $scope.image = logo;
 

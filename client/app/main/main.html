@@ -1,4 +1,4 @@
-<div flex layout="column">
+<md-content flex layout="column">
     <div flex="12">
         <div flex="50" layout="row" layout-align="space-around">
             <h3>Search posts:</h3>
@@ -42,6 +42,7 @@
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
+                        <label>difficulty: {{post.difficulty}}</label>
                         <div style="column-count: 3; column-gap:40px; column-rule: 1px solid lightgrey">
                             {{post.content}}
                         </div>
@@ -74,4 +75,4 @@
             <md-tooltip md-direction="right">הוסף מתכון</md-tooltip>
         </i>
     </md-button>
-</div>
+</md-content>
